@@ -1,0 +1,576 @@
+/* RESET & BASE */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* BARRES DE NAVIGATION */
+.top-bar {
+    width: 100%;
+    background-color: #009639;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 30px;
+    user-select: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.top-bar-left .logo {
+    height: 50px;
+}
+
+.top-bar-right {
+    white-space: nowrap;
+}
+
+.lang-btn {
+    color: white;
+    text-decoration: none !important;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-left: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    background-color: transparent !important;
+    transition: transform 0.2s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.lang-btn:first-child {
+    margin-left: 0;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+    transform: scale(1.15);
+    color: #b0f5c7;
+}
+
+/* Deuxième barre */
+.second-bar {
+    width: 100%;
+    background-color: #f5f7fa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #05445E;
+    border-bottom: 1px solid #ddd;
+}
+
+/* LIENS & TEXTES */
+.green-link,
+.second-bar-right .gestion-link {
+    color: #009639;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.green-link:hover,
+.second-bar-right .gestion-link:hover {
+    color: #007a2f;
+    text-decoration: underline;
+}
+
+.green-text {
+    color: #009639;
+    font-weight: 700;
+}
+
+.no-underline {
+    text-decoration: none !important;
+}
+
+/* CONTAINER CARTES */
+.cards-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+/* CARTE PRODUIT */
+.card {
+    background: white;
+    width: calc((100% / 5) - 16px);
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    cursor: default;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.card img.product-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.card .product-info {
+    padding: 10px;
+    font-weight: 600;
+    color: #05445E;
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+.card .product-info div {
+    margin: 4px 0;
+}
+
+/* CARTE AJOUT PRODUIT */
+.card.add-card {
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    color: #009639;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 2px dashed #009639;
+    background-color: #f9fff9;
+}
+
+.card.add-card:hover {
+    background-color: #e3f3e6;
+    transform: scale(1.03);
+}
+
+/* MODAL (commune à ajout + profil) */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.modal-content h2,
+.modal-content h3 {
+    margin-top: 0;
+    color: #009639;
+    font-weight: 700;
+    text-align: center;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #05445E;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content input[type="password"],
+.modal-content input[type="file"],
+.modal-content select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+}
+
+/* Boutons principaux */
+#btn-ajouter,
+#btn-modifier,
+#btn-supprimer {
+    font-weight: 700;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+}
+
+#btn-ajouter {
+    background-color: #009639;
+}
+
+#btn-ajouter:hover {
+    background-color: #007a2f;
+}
+
+#btn-modifier {
+    background-color: #007a2f;
+}
+
+#btn-modifier:hover {
+    background-color: #005916;
+}
+
+#btn-supprimer {
+    background-color: #b00020;
+}
+
+#btn-supprimer:hover {
+    background-color: #800018;
+}
+
+/* FERMER MODAL */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #b00020;
+}
+
+/* CONFIRMATION SUPPRESSION */
+.confirm-modal-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    max-width: 320px;
+    text-align: center;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.confirm-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-confirm-yes,
+.btn-confirm-no {
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-confirm-yes {
+    background-color: #b00020;
+}
+
+.btn-confirm-no {
+    background-color: #777;
+}
+
+/* MESSAGE FLASH */
+.message-container {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 28px;
+    border-radius: 24px;
+    font-weight: 600;
+    background-color: #009639cc;
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, top 0.5s ease;
+    z-index: 9999;
+}
+
+.message-container.show {
+    opacity: 1;
+    pointer-events: auto;
+    top: 50px;
+}
+
+/* FILE INPUT CUSTOMISÉ */
+.custom-file-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 20px;
+}
+
+.custom-file-input {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.custom-file-label {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-label:hover {
+    background-color: #f0f0f0;
+}
+
+/* HOVER CARTE PRODUIT */
+.produit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* BOUTONS MODAL ALIGNÉS */
+.modal-buttons,
+.btns {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: flex-end;
+}
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.modal-actions .btn-large {
+    width: 100%;
+    padding: 12px;
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.modal-actions .btn-large:hover {
+    background-color: #0a58ca;
+}
+
+/* Modifier + Supprimer */
+.double-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.double-buttons button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Modifier */
+#btn-modifier {
+    background-color: #198754;
+    color: white;
+}
+
+#btn-modifier:hover {
+    background-color: #157347;
+}
+
+/* Supprimer */
+#btn-supprimer {
+    background-color: #dc3545;
+    color: white;
+}
+
+#btn-supprimer:hover {
+    background-color: #bb2d3b;
+}
+/* Conteneur général */
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Bouton Ajouter : 100% largeur, style d'origine conservé */
+.modal-buttons #btn-ajouter {
+    width: 100%;
+}
+
+/* Conteneur pour Modifier / Supprimer */
+.double-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Modifier et Supprimer : chacun 50%, style d'origine conservé */
+.double-buttons #btn-modifier,
+.double-buttons #btn-supprimer {
+    width: 50%;
+}
+/* Conteneur principal des boutons */
+.modal-actions {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Bouton Ajouter prend toute la largeur */
+#btn-ajouter {
+    width: 100%;
+    font-size: 14px;      /* taille police petite comme avant */
+    padding: 8px 12px;    /* padding petit pour garder le même look */
+    box-sizing: border-box;
+}
+
+/* Conteneur des boutons Modifier + Supprimer côte à côte */
+.double-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Modifier et Supprimer prennent chacun la moitié */
+#btn-modifier,
+#btn-supprimer {
+    flex: 1;             /* largeur égale pour chaque bouton */
+    font-size: 14px;     /* taille police petite */
+    padding: 8px 12px;   /* padding petit */
+    box-sizing: border-box;
+}
+.info-profil {
+    margin-bottom: 25px;
+    padding: 15px 20px;
+    background-color: #f9fafa;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #05445E;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.info-profil p {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.info-profil strong {
+    color: #009639;
+    min-width: 80px;
+    display: inline-block;
+    font-weight: 700;
+}
+/* override centrage absolu et laisser flex centrer */
+.modal {
+  display: none;               /* caché par défaut */
+  position: fixed;
+  inset: 0;                    /* top:0; right:0; bottom:0; left:0; */
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal.active,
+.modal[style*="display: flex"] { /* si tu gardes l’inline-style display:flex */
+  display: flex;
+}
+
+.modal-content {
+  /* on annule le centrage absolu */
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: 0 auto;
+}
+.modal-content {
+  /* stricte suppression du centrage absolu */
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin: 0 auto;
+}
+/* --- Centrage Flex même quand on fait display:block en JS --- */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+/* dès qu'on met display: block ou display: flex inline, on force display:flex */
+.modal[style*="display: block"],
+.modal[style*="display: flex"] {
+  display: flex !important;
+}
+
+/* on enlève tout l'ancienne logique top/left/transform */
+.modal-content {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+  margin: 0;
+}
